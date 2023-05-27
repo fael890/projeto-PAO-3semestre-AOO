@@ -26,6 +26,12 @@ class Promocao(models.Model):
     distancia = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Distância')
     id_mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE, verbose_name='Mercado')
 
+    class Meta:
+        verbose_name_plural = 'Promoções'
+
+    def __str__(self):
+        return self.descricao
+
 class ListaCompras(models.Model):
     id_promocao = models.ForeignKey(Promocao, on_delete=models.CASCADE, verbose_name='Promoção')
     quantidade = models.IntegerField(blank=True, null=True, verbose_name='Quantidade')
