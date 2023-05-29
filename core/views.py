@@ -23,7 +23,7 @@ def atualizar_promocao(request, id):
     if form.is_valid():
         form.save()
         return redirect('url_atualiza_promocao')
-    contexto = {'form': form, 'txt_title': 'Atualização de Promoção', 'txt_descricao': 'Atualização de Promoção', 'txt_button': 'Atualizar'}
+    contexto = {'form': form, 'txt_title': 'att_prom', 'txt_descricao': 'Atualização de Promoção', 'txt_button': 'Atualizar'}
     return render(request, 'core/cadastro.html', contexto)
 
 def excluir_promocao(request, id):
@@ -50,10 +50,37 @@ def atualizar_mercado(request, id):
     if form.is_valid():
         form.save()
         return redirect('url_atualiza_mercado')
-    contexto = {'form': form, 'txt_title': 'Atualização de Mercado', 'txt_descricao': 'Atualização de Mercado', 'txt_button': 'Atualizar'}
+    contexto = {'form': form, 'txt_title': 'att_merc', 'txt_descricao': 'Atualização de Mercado', 'txt_button': 'Atualizar'}
     return render(request, 'core/cadastro.html', contexto)
 
 def excluir_mercado(request, id):
     obj = Mercado.objects.get(id=id)
     obj.delete()
     return redirect('url_listagem_mercados')
+
+def cadastrar_endereco(request):
+    form = FormEndereco(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_enderecos')
+    contexto = {'form': form, 'txt_title': 'cad_end', 'txt_descricao': 'Cadastro de endereço'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def listagem_enderecos(request):
+    dados = Endereco.objects.all()
+    contexto = {'dados': dados}
+    return render(request, 'core/listagem_enderecos.html', contexto)
+
+def atualizar_endereco(request, id):
+    obj = Endereco.objects.get(id=id)
+    form = FormEndereco(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_enderecos')
+    contexto = {'form': form, 'txt_title': 'att_end', 'txt_descricao': 'Atualização de Endereço', 'txt_button': 'Atualizar'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def excluir_endereco(request, id):
+    obj = Endereco.objects.get(id=id)
+    obj.delete()
+    return redirect('url_listagem_enderecos')

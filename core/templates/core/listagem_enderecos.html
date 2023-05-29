@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<h3>Listagem endereços</h3> <br>
+
+{% for i in dados %}
+    CEP = {% if i.cep %} {{ i.cep }} {% endif %} <br>
+    Estado = {% if i.estado %} {{ i.estado }} {% endif %} <br>
+    Cidade = {% if i.cidade %} {{ i.cidade }} {% endif %} <br>
+    Rua = {% if i.rua %} {{ i.rua }} {% endif %} <br>
+    Bairro = {% if i.bairro %} {{ i.bairro }} {% endif %} <br>
+    N° = {% if i.numero %} {{ i.numero }} {% endif %} <br>
+{% endfor %}
+<button onclick="window.location.href='/'">home</button>
+
+{% endblock %}

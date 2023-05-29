@@ -13,4 +13,8 @@ urlpatterns = [
     path('listagem-mercados/', listar_mercados, name='url_listagem_mercados'),
     path('atualiza-mercado/<int:id>/', atualizar_mercado, name='url_atualiza_mercado'),
     path('excluir-mercado/<int:id>/', excluir_mercado, name='url_exclui_mercado'),
+    path('cadastro-endereco/', cadastrar_endereco, name='url_cadastro_endereco'),
+    path('listagem-enderecos/', listagem_enderecos, name='url_listagem_enderecos'),
+    path('atualiza-endereco/<int:id>/', atualizar_endereco, name='url_atualiza_endereco'),
+    path('excluir-endereco/<int:id>/', excluir_endereco, name='url_excluir_endereco'),
 ]
