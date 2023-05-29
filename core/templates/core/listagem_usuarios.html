@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<h3>Listagem promoções</h3> <br>
+
+{% for i in dados %}
+    Nome = {% if i.nome %} {{ i.nome }} {% endif %} <br>
+    E-mail = {% if i.email %} {{ i.email }} {% endif %} <br>
+    Telefone = {% if i.telefone %} {{ i.telefone }} {% endif %} <br>
+    Foto = {% if i.foto %} {{ i.foto }} {% endif %} <br>
+    Lista_compras = {% if i.id_lista_compras %} {{ i.id_lista_compras }} {% endif %} <br>
+    Endereço = {% if i.id_endereco %} {{ i.id_endereco }} {% endif %} <br>
+{% endfor %}
+<button onclick="window.location.href='/'">home</button>
+
+{% endblock %}

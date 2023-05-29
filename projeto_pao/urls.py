@@ -17,4 +17,8 @@ urlpatterns = [
     path('listagem-enderecos/', listagem_enderecos, name='url_listagem_enderecos'),
     path('atualiza-endereco/<int:id>/', atualizar_endereco, name='url_atualiza_endereco'),
     path('excluir-endereco/<int:id>/', excluir_endereco, name='url_excluir_endereco'),
+    path('cadastro-usuario/', cadastrar_usuario, name='url_cadastro_usuario'),
+    path('listagem-usuarios/', listagem_usuarios, name='url_listagem_usuarios'),
+    path('atualiza-usuario/<int:id>/', atualizar_usuario, name='url_atualiza_usuario'),
+    path('excluir-usuario/<int:id>/', excluir_usuario, name='url_excluir_usuario'),
 ]

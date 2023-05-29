@@ -84,3 +84,31 @@ def excluir_endereco(request, id):
     obj = Endereco.objects.get(id=id)
     obj.delete()
     return redirect('url_listagem_enderecos')
+
+def cadastrar_usuario(request):
+    form = FormUsuario(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_usuarios')
+    contexto = {'form': form, 'txt_title': 'cad_user', 'txt_descricao': 'Cadastro de usuário'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def listagem_usuarios(request):
+    dados = Usuario.objects.all()
+    contexto = {'dados': dados}
+    return render(request, 'core/listagem_usuarios.html', contexto)
+
+def atualizar_usuario(request, id):
+    obj = Usuario.objects.get(id=id)
+    form = FormUsuario(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_usuarios')
+    contexto = {'form': form, 'txt_title': 'att_user', 'txt_descricao': 'Atualização de Usuário',
+                'txt_button': 'Atualizar'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def excluir_usuario(request, id):
+    obj = Usuario.objects.get(id=id)
+    obj.delete()
+    return redirect('url_listagem_usuarios')
