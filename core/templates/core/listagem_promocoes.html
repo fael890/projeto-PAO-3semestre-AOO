@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<h3>Obter promoções</h3> <br>
+
+{% for i in dados %}
+    Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
+    Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
+    Categoria = {% if i.categoria %} {{ i.categoria }} {% endif %} <br>
+    Preço Normal = {% if i.preco_normal %} {{ i.preco_normal }} {% endif %} <br>
+    Preço Promoção = {% if i.preco_promocao %} {{ i.preco_promocao }} {% endif %} <br>
+    Data Início = {% if i.data_inicio %} {{ i.data_incio }} {% endif %} <br>
+    Data Fim = {% if i.data_fim %} {{ i.data_fim }} {% endif %} <br>
+    Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
+    Mercado = {% if i.id_mercado %} {{ i.id_mercado }} {% endif %} <br>
+{% endfor %}
+<button onclick="window.location.href">home</button>
+
+{% endblock %}
