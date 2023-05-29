@@ -6,7 +6,7 @@ Home
 {% endblock %}
 
 {% block main %}
-<h3>Obter promoções</h3> <br>
+<h3>Listagem promoções</h3> <br>
 
 {% for i in dados %}
     Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
@@ -19,6 +19,6 @@ Home
     Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
     Mercado = {% if i.id_mercado %} {{ i.id_mercado }} {% endif %} <br>
 {% endfor %}
-<button onclick="window.location.href">home</button>
+<button onclick="window.location.href='/'">home</button>
 
 {% endblock %}
