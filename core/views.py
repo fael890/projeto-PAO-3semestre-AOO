@@ -112,3 +112,30 @@ def excluir_usuario(request, id):
     obj = Usuario.objects.get(id=id)
     obj.delete()
     return redirect('url_listagem_usuarios')
+
+def cadastrar_lista_compras(request):
+    form = FormListaCompras(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_lista_compras')
+    contexto = {'form': form, 'txt_title': 'cad_lista', 'txt_descricao': 'Cadastro de lista de compras'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def listagem_lista_compras(request):
+    dados = ListaCompras.objects.all()
+    contexto = {'dados': dados}
+    return render(request, 'core/listagem_lista_compras.html', contexto)
+
+def atualizar_lista_compras(request, id):
+    obj = ListaCompras.objects.get(id=id)
+    form = FormListaCompras(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_lista_compras')
+    contexto = {'form': form, 'txt_title': 'cad_lista', 'txt_descricao': 'Cadastro de lista de compras', 'txt_button': 'Atualizar'}
+    return render(request, 'core/cadastro.html', contexto)
+
+def excluir_lista_compras(request, id):
+    obj = ListaCompras.objects.get(id=id)
+    obj.delete()
+    return redirect('url_listagem_lista_compras')

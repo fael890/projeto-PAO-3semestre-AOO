@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<h3>Listagem de lista de compras</h3> <br>
+
+{% for i in dados %}
+    Promoção = {% if i.id_promocao %} {{ i.id_promocao }} {% endif %} <br>
+    Quantidade = {% if i.quantidade %} {{ i.quantidade }} {% endif %} <br>
+{% endfor %}
+<button onclick="window.location.href='/'">home</button>
+
+{% endblock %}

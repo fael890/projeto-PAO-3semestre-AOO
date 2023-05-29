@@ -21,4 +21,8 @@ urlpatterns = [
     path('listagem-usuarios/', listagem_usuarios, name='url_listagem_usuarios'),
     path('atualiza-usuario/<int:id>/', atualizar_usuario, name='url_atualiza_usuario'),
     path('excluir-usuario/<int:id>/', excluir_usuario, name='url_excluir_usuario'),
+    path('cadastro-lista-compras/', cadastrar_lista_compras, name='url_cadastro_lista_compras'),
+    path('listagem-lista-compras/', listagem_lista_compras, name='url_listagem_lista_compras'),
+    path('atualiza-lista-compras/<int:id>/', atualizar_lista_compras, name='url_atualiza_lista_compras'),
+    path('excluir-lista-compras/<int:id>/', excluir_lista_compras, name='url_excluir_lista_compras'),
 ]
