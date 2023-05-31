@@ -41,8 +41,8 @@ class Usuario(models.Model):
     email = models.EmailField(verbose_name='E-mail')
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name='Telefone')
     foto = models.ImageField(upload_to='foto_cliente', blank=True, null=True, verbose_name='')
-    id_lista_compras = models.ForeignKey(ListaCompras, on_delete=models.CASCADE, verbose_name='ListaCompras')
-    id_endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE, verbose_name='Endereço')
+    id_lista_compras = models.ForeignKey(ListaCompras, blank=True, null=True, on_delete=models.CASCADE, verbose_name='ListaCompras')
+    endereco = models.OneToOneField(Endereco, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Endereço')
 
 
 

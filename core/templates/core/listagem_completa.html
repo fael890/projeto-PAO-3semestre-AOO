@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+<h3>Listagem endereços</h3> <br>
+
+{% for i in dados_usuario %}
+    Nome = {% if i.nome %} {{ i.nome }} {% endif %} <br>
+    E-mail = {% if i.email %} {{ i.email }} {% endif %} <br>
+    Telefone = {% if i.telefone %} {{ i.telefone }} {% endif %} <br>
+    Foto = {% if i.foto %} {{ i.foto }} {% endif %} <br>
+    Lista_compras = {% if i.id_lista_compras %} {{ i.id_lista_compras }} {% endif %} <br>
+    CEP = {% if i.endereco.cep %} {{ i.endereco.cep }} {% endif %} <br>
+    Estado = {% if i.endereco.estado %} {{ i.endereco.estado }} {% endif %} <br>
+    Cidade = {% if i.endereco.cidade %} {{ i.endereco.cidade }} {% endif %} <br>
+    Rua = {% if i.endereco.rua %} {{ i.endereco.rua }} {% endif %} <br>
+    Bairro = {% if i.endereco.bairro %} {{ i.endereco.bairro }} {% endif %} <br>
+    N° = {% if i.endereco.numero %} {{ i.endereco.numero }} {% endif %} <br>
+    ------------------------------------------------------------------------------------------<br>
+{% endfor %}
+
+
+<button onclick="window.location.href='/'">home</button>
+
+{% endblock %}

@@ -5,6 +5,33 @@ from core.models import *
 def inicio(request):
     return render(request, 'core/index.html')
 
+def cadastro_completo(request):
+    form_usuario = FormUsuario(request.POST or None)
+    form_endereco = FormEndereco(request.POST or None)
+    if form_usuario.is_valid() and form_endereco.is_valid():
+        endereco_usuario = form_endereco.save()
+        usuario = form_usuario.save(commit=False)
+        usuario.endereco = endereco_usuario
+        usuario.save()
+        return redirect('url_listagem_completa')
+    contexto = {'form_usuario': form_usuario, 'form_endereco': form_endereco}
+    return render(request, 'core/cadastro_completo.html', contexto)
+
+def listagem_completa(request):
+    dados_usuario = Usuario.objects.all()
+    contexto = {'dados_usuario': dados_usuario}
+    return render(request, 'core/listagem_completa.html', contexto)
+
+'''
+def cadastrar_usuario_completo(request):
+    form = FormUsuarioCompleto(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem_usuarios')
+    contexto = {'form': form, 'txt_title': 'cad_prom', 'txt_descricao': 'Cadastro de Promoção'}
+    return render(request, 'core/cadastro_usuario_completo.html', contexto)
+'''
+
 def cadastrar_promocao(request):
     form = FormPromocao(request.POST or None)
     if form.is_valid():
