@@ -5,7 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-  {% block main %}
-  {% endblock %}
+    {% if user.get_username %}
+        Usuário: {{ user.get_username }} (<a href="/accounts/logout_usuario/">logout</a> | <a href="/admin">admin</a>)
+    {% else %}
+        Usuário não autenticado ( <a href="/accounts/login_usuario/">login</a> | <a href="/accounts/registrar/">registrar</a>)
+    {% endif %}
+    {% block main %}
+    {% endblock %}
 </body>
 </html>

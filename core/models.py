@@ -10,10 +10,22 @@ class Endereco(models.Model):
     bairro = models.CharField(max_length=100, blank=True, null=True, verbose_name='Bairro')
     numero = models.IntegerField(blank=True, null=True, verbose_name='Número')
 
+    class Meta:
+        verbose_name_plural = 'Endereço'
+
+    def __str__(self):
+        return self.cep
+
 class Mercado(models.Model):
     razao_social = models.CharField(max_length=100, verbose_name='Razão Social')
     cnpj = models.CharField(max_length=20, verbose_name='CNPJ')
-    id_endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE, verbose_name='Endereço')
+    endereco = models.OneToOneField(Endereco, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Endereço')
+
+    class Meta:
+        verbose_name_plural = 'Mercado'
+
+    def __str__(self):
+        return self.razao_social
 
 class Promocao(models.Model):
     descricao = models.CharField(max_length=150, blank=True, null=True, verbose_name='Descricao')
@@ -24,7 +36,7 @@ class Promocao(models.Model):
     data_inicio = models.DateField(auto_now=False, verbose_name='Inicio')
     data_fim = models.DateField(auto_now=False, verbose_name='Fim')
     distancia = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Distância')
-    id_mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE, verbose_name='Mercado')
+    mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE, verbose_name='Mercado')
 
     class Meta:
         verbose_name_plural = 'Promoções'
@@ -36,6 +48,9 @@ class ListaCompras(models.Model):
     id_promocao = models.ForeignKey(Promocao, on_delete=models.CASCADE, verbose_name='Promoção')
     quantidade = models.IntegerField(blank=True, null=True, verbose_name='Quantidade')
 
+    class Meta:
+        verbose_name_plural = 'lista compras'
+
 class Usuario(models.Model):
     nome = models.CharField(max_length=100, verbose_name='Nome')
     email = models.EmailField(verbose_name='E-mail')
@@ -43,6 +58,12 @@ class Usuario(models.Model):
     foto = models.ImageField(upload_to='foto_cliente', blank=True, null=True, verbose_name='')
     id_lista_compras = models.ForeignKey(ListaCompras, blank=True, null=True, on_delete=models.CASCADE, verbose_name='ListaCompras')
     endereco = models.OneToOneField(Endereco, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Endereço')
+
+    class Meta:
+        verbose_name_plural = 'Usuario'
+
+    def __str__(self):
+        return self.email
 
 
 

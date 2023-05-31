@@ -11,7 +11,12 @@ Home
 {% for i in dados %}
     Razão Social = {% if i.razao_social %} {{ i.razao_social }} {% endif %} <br>
     cnpj = {% if i.cnpj %} {{ i.cnpj }} {% endif %} <br>
-    Endereço = {% if i.id_endereco %} {{ i.id_endereco }} {% endif %} <br>
+    CEP = {% if i.endereco.cep %} {{ i.endereco.cep }} {% endif %} <br>
+    Estado = {% if i.endereco.estado %} {{ i.endereco.estado }} {% endif %} <br>
+    Cidade = {% if i.endereco.cidade %} {{ i.endereco.cidade }} {% endif %} <br>
+    Rua = {% if i.endereco.rua %} {{ i.endereco.rua }} {% endif %} <br>
+    Bairro = {% if i.endereco.bairro %} {{ i.endereco.bairro }} {% endif %} <br>
+    N° = {% if i.endereco.numero %} {{ i.endereco.numero }} {% endif %} <br>
 {% endfor %}
 <button onclick="window.location.href='/'">home</button>
 

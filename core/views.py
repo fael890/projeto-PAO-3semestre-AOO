@@ -1,20 +1,54 @@
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from core.forms import *
 from core.models import *
+from django.contrib.auth.forms import UserCreationForm
 
 def inicio(request):
     return render(request, 'core/index.html')
 
+def logout_usuario(request):
+    logout(request)
+    return redirect('url_principal')
+
+def login_usuario(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('url_principal')
+        else:
+            return redirect('url_login_usuario')
+    else:
+        return render(request, 'authenticate/login.html', {})
+
+def registrar(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            '''
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            '''
+            return redirect('url_principal')
+    else:
+        form = UserCreationForm()
+    return render(request, 'authenticate/registrar.html', {'form': form})
+
 def cadastro_completo(request):
-    form_usuario = FormUsuario(request.POST or None)
+    form = FormUsuario(request.POST or None)
     form_endereco = FormEndereco(request.POST or None)
-    if form_usuario.is_valid() and form_endereco.is_valid():
+    if form.is_valid() and form_endereco.is_valid():
         endereco_usuario = form_endereco.save()
-        usuario = form_usuario.save(commit=False)
+        usuario = form.save(commit=False)
         usuario.endereco = endereco_usuario
         usuario.save()
         return redirect('url_listagem_completa')
-    contexto = {'form_usuario': form_usuario, 'form_endereco': form_endereco}
+    contexto = {'form': form, 'form_endereco': form_endereco}
     return render(request, 'core/cadastro_completo.html', contexto)
 
 def listagem_completa(request):
@@ -60,11 +94,16 @@ def excluir_promocao(request, id):
 
 def cadastrar_mercado(request):
     form = FormMercado(request.POST or None)
-    if form.is_valid():
-        form.save()
+    form_endereco = FormEndereco(request.POST or None)
+    if form.is_valid() and form_endereco.is_valid():
+        endereco = form_endereco.save()
+        print(endereco)
+        mercado = form.save(commit=False)
+        mercado.endereco = endereco
+        mercado.save()
         return redirect('url_listagem_mercados')
-    contexto = {'form': form, 'txt_title': 'cad_merc', 'txt_descrição': 'Cadastro de mercado'}
-    return render(request, 'core/cadastro.html', contexto)
+    contexto = {'form': form, 'form_endereco': form_endereco}
+    return render(request, 'core/cadastro_completo.html', contexto)
 
 def listar_mercados(request):
     dados = Mercado.objects.all()

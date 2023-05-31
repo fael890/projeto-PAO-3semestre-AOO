@@ -15,7 +15,7 @@ class FormPromocao(ModelForm):
 class FormMercado(ModelForm):
     class Meta:
         model = Mercado
-        fields = "__all__"
+        fields = ['razao_social', 'cnpj']
 
 class FormEndereco(ModelForm):
     class Meta:
