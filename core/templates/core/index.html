@@ -7,22 +7,37 @@ Home
 
 {% block main %}
 
-    <h3>PAO - Promoções</h3>
-    <a href="/">Início</a>
-    <a href="/lista-compras/">Lista Compras</a>
-    <a href="/grafico/">Gráfico</a>
-    <a href="/usuario/">Perfil</a>
-    <a href="/cadastro-promocao/">Cadastrar Promoção</a>
-    <a href="/listagem-promocoes/">Pesquisa Promoções</a>
-    <a href="/cadastro-mercado/">Cadastrar Mercado</a>
-    <a href="/listagem-mercados/">Pesquisa Mercados</a>
-    <a href="/cadastro-endereco/">Cadastrar Endereço</a>
-    <a href="/listagem-enderecos/">Pesquisa Endereços</a><br><br>
+    <style>
+        a:link{
+            text-decoration: none;
+        }
+        .feito{
+            color: pink;
 
-    <a href="/cadastro-usuario/">Cadastrar Usuário</a><br>
-    <a href="/listagem-usuarios/">Pesquisa Usuários</a><br><br>
+        }
+    </style>
+
+    <h3>PAO - Promoções</h3>
+    <a href="/">Início</a><br>
+    <a href="/lista-compras/">Lista Compras</a><br>
+    <a href="/grafico/">Gráfico</a><br>
+    <a href="/usuario/">Perfil</a><br>
+    <a class="feito" href="/cadastro-promocao/">Cadastrar Promoção</a><br>
+    <a class="feito" href="/listagem-promocoes/">Pesquisa Promoções</a><br>
+    <a class="feito" href="/cadastro-mercado/">Cadastrar Mercado</a><br>
+    <a class="feito" href="/listagem-mercados/">Pesquisa Mercados</a><br>
 
     <a href="/cadastro-completo/">Cadastro completo</a> <br>
     <a href="/listagem-completa/">Listagem completa</a> <br>
+
+    <h3>PROMOÇÕES DE DESTAQUE</h3>
+
+    {% for i in promocoes %}
+        Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
+        Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
+        Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
+        Mercado = {% if i.mercado.razao_social %} {{ i.mercado.razao_social}} {% endif %} <br>
+        ----------------------------------------------------------------------------------<br>
+    {% endfor %}
 
 {% endblock %}

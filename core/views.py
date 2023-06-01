@@ -5,7 +5,9 @@ from core.models import *
 from django.contrib.auth.forms import UserCreationForm
 
 def inicio(request):
-    return render(request, 'core/index.html')
+    promocoes = Promocao.objects.all()
+    contexto = {'promocoes': promocoes}
+    return render(request, 'core/index.html', contexto)
 
 def logout_usuario(request):
     logout(request)
@@ -29,11 +31,6 @@ def registrar(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            '''
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            '''
             return redirect('url_principal')
     else:
         form = UserCreationForm()
@@ -56,16 +53,6 @@ def listagem_completa(request):
     contexto = {'dados_usuario': dados_usuario}
     return render(request, 'core/listagem_completa.html', contexto)
 
-'''
-def cadastrar_usuario_completo(request):
-    form = FormUsuarioCompleto(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('url_listagem_usuarios')
-    contexto = {'form': form, 'txt_title': 'cad_prom', 'txt_descricao': 'Cadastro de Promoção'}
-    return render(request, 'core/cadastro_usuario_completo.html', contexto)
-'''
-
 def cadastrar_promocao(request):
     form = FormPromocao(request.POST or None)
     if form.is_valid():
@@ -73,6 +60,7 @@ def cadastrar_promocao(request):
         return redirect('url_listagem_promocoes')
     contexto = {'form': form, 'txt_title': 'cad_prom', 'txt_descricao': 'Cadastro de Promoção'}
     return render(request, 'core/cadastro.html', contexto)
+
 def listar_promocoes(request):
     dados = Promocao.objects.all()
     contexto = {'dados': dados}
