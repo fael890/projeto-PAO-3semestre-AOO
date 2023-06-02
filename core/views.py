@@ -36,6 +36,16 @@ def registrar(request):
         form = UserCreationForm()
     return render(request, 'authenticate/registrar.html', {'form': form})
 
+def itens_lista_compras(request):
+    itens = ListaCompras.objects.all()
+    return render(request, 'core/lista_compras.html', {'itens': itens})
+
+def adicionar_item_lista(request, id):
+    promocao_selecionada = Promocao.objects.get(id=id)
+    item_lista = ListaCompras(id_promocao=promocao_selecionada)
+    item_lista.save()
+    return redirect('url_lista_compras')
+
 def cadastro_completo(request):
     form = FormUsuario(request.POST or None)
     form_endereco = FormEndereco(request.POST or None)

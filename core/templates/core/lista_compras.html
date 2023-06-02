@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in itens %}
+    <b>{% if i.id_promocao.descricao %}{{ i.id_promocao.descricao }}{% endif %}</b><br>
+    {% if i.id_promocao.preco_promocao %}{{ i.id_promocao.preco_promocao }}{% endif %} <--
+    {% if i.id_promocao.preco_normal %}{{ i.id_promocao.preco_normal }}{% endif %}<br>
+    {% if i.id_promocao.preco_normal %}{{ i.id_promocao.preco_normal }}{% endif %}<br>
+    {% if i.id_promocao.mercado.razao_social %}{{ i.id_promocao.mercado.razao_social }}{% endif %}<br>
+    {% if i.id_promocao.distancia %}{{ i.id_promocao.distancia }}{% endif %}<br>
+    ______________________________________________________________________________________________<br>
+{% endfor %}
+</br></br>
+<button><a href="/listagem-promocoes/">Adicionar item +</a></button>
+</body>
+</html>

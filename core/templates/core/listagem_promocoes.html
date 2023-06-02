@@ -18,6 +18,8 @@ Home
     Data Fim = {% if i.data_fim %} {{ i.data_fim }} {% endif %} <br>
     Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
     Mercado = {% if i.id_mercado %} {{ i.id_mercado }} {% endif %} <br>
+    <a href="{% url 'url_adicionar_item' i.id %}">Adicionar na lista de compras</a><br>
+    _____________________________________________________________________<br>
 {% endfor %}
 <button onclick="window.location.href='/'">home</button>
 
