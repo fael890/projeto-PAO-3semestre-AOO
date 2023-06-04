@@ -65,6 +65,7 @@ def listagem_completa(request):
 
 def cadastrar_promocao(request):
     form = FormPromocao(request.POST or None)
+    print(form)
     if form.is_valid():
         form.save()
         return redirect('url_listagem_promocoes')
@@ -72,7 +73,10 @@ def cadastrar_promocao(request):
     return render(request, 'core/cadastro.html', contexto)
 
 def listar_promocoes(request):
-    dados = Promocao.objects.all()
+    if request.POST and request.POST['input_promocao']:
+        dados = Promocao.objects.filter(descricao__contains=request.POST['input_promocao'])
+    else:
+        dados = Promocao.objects.all()
     contexto = {'dados': dados}
     return render(request, 'core/listagem_promocoes.html', contexto)
 

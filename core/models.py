@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+CATEGORIAS_CHOICES = (
+    ('padaria', 'Padaria'),
+    ('hortifruti', 'Hortifruti'),
+    ('acougue', 'Açougue'),
+    ('bebidas', 'Bebidas'),
+)
+
 class Endereco(models.Model):
     cep = models.CharField(max_length=100, verbose_name='CEP')
     estado = models.CharField(max_length=2, verbose_name='Estado')
@@ -30,7 +37,7 @@ class Mercado(models.Model):
 class Promocao(models.Model):
     descricao = models.CharField(max_length=150, blank=True, null=True, verbose_name='Descricao')
     unidade = models.CharField(max_length=20, blank=True, null=True, verbose_name='Unidade')
-    categoria = models.CharField(max_length=100, blank=True, null=True, verbose_name='Categoria')
+    categoria = models.CharField(max_length=100,choices=CATEGORIAS_CHOICES, blank=True, null=True, verbose_name='Categoria')
     preco_normal = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Preço normal')
     preco_promocao = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Preço')
     data_inicio = models.DateField(auto_now=False, verbose_name='Inicio')

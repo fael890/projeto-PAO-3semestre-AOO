@@ -1,12 +1,6 @@
 from django.forms import ModelForm
 from core.models import *
 
-'''
-class FormUsuarioCompleto(ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ['nome', 'email', 'telefone', 'foto','id_endereco__cep', 'id_endereco__estado', 'id_endereco__cidade', 'id_endereco__rua', 'id_endereco__bairro', 'id_endereco__numero']
-'''
 class FormPromocao(ModelForm):
     class Meta:
         model = Promocao

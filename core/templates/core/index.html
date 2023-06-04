@@ -7,7 +7,7 @@ Home
 
 {% block main %}
 
-    <style>
+<style>
         a:link{
             text-decoration: none;
         }
@@ -15,30 +15,55 @@ Home
             color: pink;
 
         }
-    </style>
 
-    <h3>PAO - Promoções</h3>
-    <a href="/">Início</a><br>
-    <a href="/listagem-promocoes/">Pesquisar promoções</a><br>
-    <a href="/lista-compras/">Lista de compras</a></br>
-    <a href="/perfil/">Perfil</a></br></br>
 
-    <a class="feito" href="/cadastro-promocao/">Cadastrar Promoção</a><br>
-    <a class="feito" href="/listagem-promocoes/">Pesquisa Promoções</a><br>
-    <a class="feito" href="/cadastro-mercado/">Cadastrar Mercado</a><br>
-    <a class="feito" href="/listagem-mercados/">Pesquisa Mercados</a><br>
 
-    <a href="/cadastro-completo/">Cadastro completo</a> <br>
-    <a href="/listagem-completa/">Listagem completa</a> <br>
+</style>
 
-    <h3>PROMOÇÕES DE DESTAQUE</h3>
+<h3>PAO - Promoções</h3>
+<a href="/">Início</a><br>
+<a href="/listagem-promocoes/">Pesquisar promoções</a><br>
+<a href="/lista-compras/">Lista de compras</a></br>
+<a href="/perfil/">Perfil</a></br></br>
 
-    {% for i in promocoes %}
-        Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
-        Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
-        Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
-        Mercado = {% if i.mercado.razao_social %} {{ i.mercado.razao_social}} {% endif %} <br>
-        ----------------------------------------------------------------------------------<br>
-    {% endfor %}
+<a class="feito" href="/cadastro-promocao/">Cadastrar Promoção</a><br>
+<a class="feito" href="/listagem-promocoes/">Pesquisa Promoções</a><br>
+<a class="feito" href="/cadastro-mercado/">Cadastrar Mercado</a><br>
+<a class="feito" href="/listagem-mercados/">Pesquisa Mercados</a><br>
+
+<a href="/cadastro-completo/">Cadastro completo</a> <br>
+<a href="/listagem-completa/">Listagem completa</a> <br>
+
+<h3>PROMOÇÕES DE DESTAQUE</h3>
+
+<!--<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">-->
+<!--    <div class="carousel-inner">-->
+<!--        <div class="carousel-item active">-->
+<!--            <img src="..." class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--        <div class="carousel-item">-->
+<!--            <img src="..." class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--        <div class="carousel-item">-->
+<!--            <img src="..." class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">-->
+<!--        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Previous</span>-->
+<!--    </button>-->
+<!--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">-->
+<!--        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Next</span>-->
+<!--    </button>-->
+<!--</div>-->
+
+{% for i in promocoes %}
+Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
+Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
+Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
+Mercado = {% if i.mercado.razao_social %} {{ i.mercado.razao_social}}{% endif %} <br>
+################################################################################# <br>
+{% endfor %}
 
 {% endblock %}

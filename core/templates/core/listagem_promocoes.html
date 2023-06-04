@@ -6,20 +6,40 @@ Home
 {% endblock %}
 
 {% block main %}
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">  <!--justify-content-center">-->
+        <div class="" id="mynavbar" >
+            <form class="d-flex" method="post">
+                {% csrf_token %}
+                <input class="form-control me-2" name="input_promocao" type="text" placeholder="Pesquise a promoção!">
+                <button class="btn btn-primary" type="submit" >Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<select name="select_categoria" id="id_categoria">
+  <option value="" disabled selected>Selecione</option>
+  <option value="padaria">Padaria</option>
+  <option value="hortifruti">Hortifruti</option>
+  <option value="acougue">Açougue</option>
+  <option value="bebidas">Bebidas</option>
+</select>
+
 <h3>Listagem promoções</h3> <br>
 
 {% for i in dados %}
-    Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
-    Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
-    Categoria = {% if i.categoria %} {{ i.categoria }} {% endif %} <br>
-    Preço Normal = {% if i.preco_normal %} {{ i.preco_normal }} {% endif %} <br>
-    Preço Promoção = {% if i.preco_promocao %} {{ i.preco_promocao }} {% endif %} <br>
-    Data Início = {% if i.data_inicio %} {{ i.data_incio }} {% endif %} <br>
-    Data Fim = {% if i.data_fim %} {{ i.data_fim }} {% endif %} <br>
-    Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
-    Mercado = {% if i.id_mercado %} {{ i.id_mercado }} {% endif %} <br>
-    <a href="{% url 'url_adicionar_item' i.id %}">Adicionar na lista de compras</a><br>
-    _____________________________________________________________________<br>
+Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
+Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
+Categoria = {% if i.categoria %} {{ i.categoria }} {% endif %} <br>
+Preço Normal = {% if i.preco_normal %} {{ i.preco_normal }} {% endif %} <br>
+Preço Promoção = {% if i.preco_promocao %} {{ i.preco_promocao }} {% endif %} <br>
+Data Início = {% if i.data_inicio %} {{ i.data_inicio }} {% endif %} <br>
+Data Fim = {% if i.data_fim %} {{ i.data_fim }} {% endif %} <br>
+Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
+Mercado = {% if i.mercado.razao_social %} {{ i.mercado.razao_social }} {% endif %} <br>
+<a href="{% url 'url_adicionar_item' i.id %}">Adicionar na lista de compras</a><br>
+_____________________________________________________________________<br>
 {% endfor %}
 <button onclick="window.location.href='/'">home</button>
 
