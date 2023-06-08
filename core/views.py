@@ -46,6 +46,11 @@ def adicionar_item_lista(request, id):
     item_lista.save()
     return redirect('url_lista_compras')
 
+def excluir_item_lista(request, id):
+    obj = ListaCompras.objects.get(id=id)
+    obj.delete()
+    return redirect('url_lista_compras')
+
 def cadastro_completo(request):
     form = FormUsuario(request.POST or None)
     form_endereco = FormEndereco(request.POST or None)

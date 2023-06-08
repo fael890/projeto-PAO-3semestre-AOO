@@ -12,6 +12,7 @@
     {% if i.id_promocao.preco_normal %}{{ i.id_promocao.preco_normal }}{% endif %}<br>
     {% if i.id_promocao.mercado.razao_social %}{{ i.id_promocao.mercado.razao_social }}{% endif %}<br>
     {% if i.id_promocao.distancia %}{{ i.id_promocao.distancia }}{% endif %}<br>
+    <button><a href="{% url 'url_excluir_item' i.id %}">Remover</a></button><br>
     ______________________________________________________________________________________________<br>
 {% endfor %}
 </br></br>

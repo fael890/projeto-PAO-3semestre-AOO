@@ -14,6 +14,7 @@ urlpatterns = [
     path('', inicio, name='url_principal'),
     path('lista-compras/', itens_lista_compras, name='url_lista_compras'),
     path('lista-compras/<int:id>', adicionar_item_lista, name='url_adicionar_item'),
+    path('lista-compras/excluir/<int:id>', excluir_item_lista, name='url_excluir_item'),
 
     path('cadastro-promocao/', cadastrar_promocao, name='url_cadastro_promocao'),
     path('listagem-promocoes/', listar_promocoes, name='url_listagem_promocoes'),
