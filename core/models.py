@@ -44,6 +44,7 @@ class Promocao(models.Model):
     data_fim = models.DateField(auto_now=False, verbose_name='Fim')
     distancia = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Distância')
     mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE, verbose_name='Mercado')
+    imagem = models.ImageField(upload_to='img_promocoes', blank=True, null=True, verbose_name="ImagemPromoção")
 
     class Meta:
         verbose_name_plural = 'Promoções'

@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from core.forms import *
@@ -5,9 +7,11 @@ from core.models import *
 from django.contrib.auth.forms import UserCreationForm
 
 def inicio(request):
-    promocoes = Promocao.objects.all()
-    contexto = {'promocoes': promocoes}
-    return render(request, 'core/index.html', contexto)
+    categorias = ['padaria', 'hortifruti', 'acougue', 'bebidas']
+    promocoes = []
+    for categoria in categorias:
+        promocoes.append(Promocao.objects.filter(categoria=categoria))
+    return render(request, 'core/index.html', {'promocoes': promocoes})
 
 def logout_usuario(request):
     logout(request)
@@ -24,7 +28,7 @@ def login_usuario(request):
         else:
             return redirect('url_login_usuario')
     else:
-        return render(request, 'authenticate/login.html', {})
+        return render(request, 'authenticate/login.html', {'contador': 0})
 
 def registrar(request):
     if request.method == 'POST':

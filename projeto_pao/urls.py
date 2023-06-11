@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 from core.views import *
 
 urlpatterns = [
@@ -44,3 +46,5 @@ urlpatterns = [
     path('cadastro-completo/', cadastro_completo, name='url_cadastro_completo'),
     path('listagem-completa/', listagem_completa, name='url_listagem_completa'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
