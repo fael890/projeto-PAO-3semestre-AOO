@@ -55,6 +55,18 @@ def excluir_item_lista(request, id):
     obj.delete()
     return redirect('url_lista_compras')
 
+def listar_promocoes(request):
+    if request.POST and request.POST['input_promocao']:
+        dados = Promocao.objects.filter(descricao__contains=request.POST['input_promocao'])
+    else:
+        dados = Promocao.objects.all()
+    contexto = {'dados': dados}
+    return render(request, 'core/listagem_promocoes.html', contexto)
+
+def listar_promocao(request, id):
+    promocao = Promocao.objects.get(id=id)
+    return render(request, 'core/listagem_promocao.html', {'promocao': promocao})
+
 def cadastro_completo(request):
     form = FormUsuario(request.POST or None)
     form_endereco = FormEndereco(request.POST or None)
@@ -81,13 +93,6 @@ def cadastrar_promocao(request):
     contexto = {'form': form, 'txt_title': 'cad_prom', 'txt_descricao': 'Cadastro de Promoção'}
     return render(request, 'core/cadastro.html', contexto)
 
-def listar_promocoes(request):
-    if request.POST and request.POST['input_promocao']:
-        dados = Promocao.objects.filter(descricao__contains=request.POST['input_promocao'])
-    else:
-        dados = Promocao.objects.all()
-    contexto = {'dados': dados}
-    return render(request, 'core/listagem_promocoes.html', contexto)
 
 def atualizar_promocao(request, id):
     obj = Promocao.objects.get(id=id)

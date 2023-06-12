@@ -45,6 +45,10 @@ class Promocao(models.Model):
     distancia = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Distância')
     mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE, verbose_name='Mercado')
     imagem = models.ImageField(upload_to='img_promocoes', blank=True, null=True, verbose_name="ImagemPromoção")
+    marca = models.CharField(max_length=100, blank=True, null=True, verbose_name='Marca')
+    valor_energetico = models.CharField(max_length=100, blank=True, null=True, verbose_name='Valor Energético')
+    ingredientes = models.CharField(max_length=100, blank=True, null=True, verbose_name='Ingredientes')
+    informacao_adicional = models.CharField(max_length=100, blank=True, null=True, verbose_name='Informação adicional')
 
     class Meta:
         verbose_name_plural = 'Promoções'
