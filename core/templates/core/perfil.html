@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+perfil
+{% endblock %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static '/css/perfil_style.css' %}">
+
+<div class="card" style="width: 30rem;">
+    {% if perfil.imagem %}
+        <img class="img-perfil card-img-top" src="{{ perfil.imagem.url }}"> <br>
+    {% else %}
+        <img class="img-perfil card-img-top" src="{% static 'generic_profile.jpg' %}"> <br>
+    {% endif %}
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 p-0"><h3 class="card-title">{% if perfil.nome %} {{ perfil.nome }} {% endif %} </h3></div>
+            </div>
+        </div>
+        <p class="card-text">
+            {% if perfil.email %}{{ perfil.email }}{% endif %} <br>
+            {% if perfil.telefone %}{{ perfil.telefone }}{% endif %}
+        </p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Alterar informações do perfil</li>
+        <li class="list-group-item">Informações detalhadas do perfil</li>
+        <li class="list-group-item">Preferências<span class="material-symbols-outlined">settings</span></li>
+
+    </ul>
+    <div class="card-body">
+        <a href="/" class="btn btn-primary">Voltar para o início</a>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Enviar e-mail (simulação)</button>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Simulação de envio de e-mail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Promoções em destaque enviadas para o e-mail: <b>{{ perfil.email }}</b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+<!--                <button type="button" class="btn btn-primary">Certo</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

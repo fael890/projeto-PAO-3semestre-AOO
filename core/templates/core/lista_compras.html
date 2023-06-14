@@ -8,6 +8,11 @@ lista compras
 {% block main %}
 <link rel="stylesheet" href="{% static '/css/lista_compras_style.css' %}">
 
+<h3>LISTA DE COMPRAS</h3>
+
+<!--<button class="add-new-item" href="/listagem-promocoes/"></button>-->
+<div class="add-new-item"><a href="/listagem-promocoes/">Adicionar item +</a></div>
+
 {% for i in itens %}
 <div class="card">
     {% if i.id_promocao.imagem %}
@@ -56,5 +61,4 @@ lista compras
 <!--    {% endfor %}-->
 <!--</div>-->
 
-<button><a href="/listagem-promocoes/">Adicionar item +</a></button>
 {% endblock %}

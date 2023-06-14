@@ -1,5 +1,3 @@
-from collections import Counter
-
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from core.forms import *
@@ -32,13 +30,23 @@ def login_usuario(request):
 
 def registrar(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form_autenticao = UserCreationForm(request.POST)
+        form_usuario = FormUsuario(request.POST)
+        form_endereco = FormEndereco(request.POST)
+        if form_autenticao.is_valid() and form_usuario.is_valid() and form_endereco.is_valid():
+            endereco = form_endereco.save()
+            autenticao = form_autenticao.save()
+            usuario = form_usuario.save(commit='False')
+            usuario.endereco = endereco
+            usuario.autenticacao = autenticao
+            usuario.save()
             return redirect('url_principal')
     else:
-        form = UserCreationForm()
-    return render(request, 'authenticate/registrar.html', {'form': form})
+        form_autenticao = UserCreationForm()
+        form_usuario = FormUsuario()
+        form_endereco = FormEndereco()
+    contexto = {'form_autenticao': form_autenticao, 'form_usuario': form_usuario, 'form_endereco': form_endereco}
+    return render(request, 'authenticate/registrar.html', contexto)
 
 def itens_lista_compras(request):
     itens = ListaCompras.objects.all()
@@ -54,6 +62,11 @@ def excluir_item_lista(request, id):
     obj = ListaCompras.objects.get(id=id)
     obj.delete()
     return redirect('url_lista_compras')
+
+def exibir_perfil(request):
+    usuario_logado = request.user
+    perfil = Usuario.objects.get(autenticacao=usuario_logado)
+    return render(request, 'core/perfil.html', {'perfil': perfil})
 
 def listar_promocoes(request):
     if request.POST and request.POST['input_promocao']:

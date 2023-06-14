@@ -1,5 +1,8 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from core.models import *
+from django import forms
+from django.contrib.auth.models import User
 
 class FormPromocao(ModelForm):
     class Meta:
@@ -19,7 +22,7 @@ class FormEndereco(ModelForm):
 class FormUsuario(ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nome', 'email', 'telefone', 'foto', 'id_lista_compras']
+        fields = ['nome', 'email', 'telefone', 'imagem', 'id_lista_compras']
 
 class FormListaCompras(ModelForm):
     class Meta:

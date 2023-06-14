@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -67,9 +68,10 @@ class Usuario(models.Model):
     nome = models.CharField(max_length=100, verbose_name='Nome')
     email = models.EmailField(verbose_name='E-mail')
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name='Telefone')
-    foto = models.ImageField(upload_to='foto_cliente', blank=True, null=True, verbose_name='')
+    imagem = models.ImageField(upload_to='img_usuario', blank=True, null=True, verbose_name='')
     id_lista_compras = models.ForeignKey(ListaCompras, blank=True, null=True, on_delete=models.CASCADE, verbose_name='ListaCompras')
     endereco = models.OneToOneField(Endereco, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Endereço')
+    autenticacao = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Usuario'

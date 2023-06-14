@@ -22,6 +22,7 @@ urlpatterns = [
     path('listagem-promocoes/', listar_promocoes, name='url_listagem_promocoes'),
     path('listagem-promocao/<int:id>/', listar_promocao, name='url_listagem_promocao_id'),
 
+    path('perfil/', exibir_perfil, name='url_perfil'),
 
     path('cadastro-promocao/', cadastrar_promocao, name='url_cadastro_promocao'),
     path('atualiza-promocao/<int:id>/', atualizar_promocao, name='url_atualiza_promocao'),
