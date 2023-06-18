@@ -6,6 +6,8 @@ Home
 {% endblock %}
 
 {% block main %}
+<link rel="stylesheet" href="{% static '/css/promocoes_style.css' %}">
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">  <!--justify-content-center">-->
         <div class="" id="mynavbar" >
@@ -18,29 +20,30 @@ Home
     </div>
 </nav>
 
-<select name="select_categoria" id="id_categoria">
-  <option value="" disabled selected>Selecione</option>
-  <option value="padaria">Padaria</option>
-  <option value="hortifruti">Hortifruti</option>
-  <option value="acougue">Açougue</option>
-  <option value="bebidas">Bebidas</option>
-</select>
-
 <h3>Listagem promoções</h3> <br>
 
-{% for i in dados %}
-Descrição = {% if i.descricao %} {{ i.descricao }} {% endif %} <br>
-Unidade = {% if i.unidade %} {{ i.unidade }} {% endif %} <br>
-Categoria = {% if i.categoria %} {{ i.categoria }} {% endif %} <br>
-Preço Normal = {% if i.preco_normal %} {{ i.preco_normal }} {% endif %} <br>
-Preço Promoção = {% if i.preco_promocao %} {{ i.preco_promocao }} {% endif %} <br>
-Data Início = {% if i.data_inicio %} {{ i.data_inicio }} {% endif %} <br>
-Data Fim = {% if i.data_fim %} {{ i.data_fim }} {% endif %} <br>
-Distância = {% if i.distancia %} {{ i.distancia }} {% endif %} <br>
-Mercado = {% if i.mercado.razao_social %} {{ i.mercado.razao_social }} {% endif %} <br>
-<a href="{% url 'url_adicionar_item' i.id %}">Adicionar na lista de compras</a><br>
-_____________________________________________________________________<br>
+{% for i in promocoes %}
+<div class="card">
+    {% if i.imagem %}
+        <img class="card-img product-img img-fluid rounded-start" src="{{ i.imagem.url }}">
+    {% else %}
+        <img class="card-img product-img img-fluid rounded-start" src="{% static 'promocao_generica.png' %}">
+    {% endif %}
+    <div class="card-body">
+        <div class="text-section">
+            <h5 class="card-title">{% if i.descricao %} {{ i.descricao }} ({{ i.unidade }}) {% endif %}</h5>
+            <p class="card-text">
+                {% if i.preco_promocao %} <b class="preco-promocao">R${{ i.preco_promocao }}</b> <s>R${{ i.preco_normal }}</s>{% endif %} <br>
+                {% if i.mercado.razao_social %}Supermercado: <b>{{ i.mercado.razao_social }}</b> {% endif %} <br>
+                {% if i.distancia %}{{ i.distancia }}{% endif %}
+            </p>
+        </div>
+        <div class="cta-section">
+            <a class="custom-btn" href="{% url 'url_adicionar_item' i.id %}"><span class="material-symbols-outlined">note_add</span></a>
+        </div>
+    </div>
+</div>
 {% endfor %}
-<button onclick="window.location.href='/'">home</button>
+
 
 {% endblock %}

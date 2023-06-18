@@ -43,16 +43,35 @@
                         <span class="material-symbols-outlined">person</span>Perfil
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cadastro-promocao/">
+                        <span class="material-symbols-outlined">assignment_add</span>Cadastrar Promoção
+                    </a>
+                </li>
+                <li class="nav-item pl-3 justify-content-end">
+                    <a class="nav-link" href="/cadastro-promocao/">
+<!--                        {% if user.get_username %}-->
+<!--                        Usuário: {{ user.get_username }} <a href="/accounts/logout_usuario/">logout</a> | <a href="/admin">admin</a>-->
+<!--                        {% else %}-->
+<!--                        Usuário não autenticado ( <a href="/accounts/login_usuario/">login</a> | <a href="/accounts/registrar/">registrar</a>)-->
+<!--                        {% endif %}-->
+
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    {% if user.get_username %}
+                    <a href="/accounts/logout_usuario/" >logout</a> | <a href="/admin">admin</a>
+                    {% else %}
+                    <a href="/accounts/login_usuario/" >login</a> | <a href="/accounts/registrar/" >registrar</a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 {% block main %}
 {% endblock %}
-{% if user.get_username %}
-Usuário: {{ user.get_username }} (<a href="/accounts/logout_usuario/">logout</a> | <a href="/admin">admin</a>)
-{% else %}
-Usuário não autenticado ( <a href="/accounts/login_usuario/">login</a> | <a href="/accounts/registrar/">registrar</a>)
-{% endif %}
 </body>
 </html>

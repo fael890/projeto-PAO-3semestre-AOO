@@ -27,7 +27,7 @@ Home
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Supermercado: {% if promocao.mercado.razao_social %} <b>{{ promocao.mercado.razao_social}}</b> {% endif %}</li>
-        <li class="list-group-item">Endereço: {% if promocao.mercado.endereco.rua %}{{ promocao.mercado.endereco.rua }}, {{ promocao.mercado.endereco.numero }}{% endif %}</li>
+        <li class="list-group-item">Endereço: {% if promocao.mercado.endereco.rua %}<b>{{ promocao.mercado.endereco.rua }}, {{ promocao.mercado.endereco.numero }}</b>{% endif %}</li>
         <li class="list-group-item">Distância: {% if promocao.distancia %} <b>{{ promocao.distancia }}</b> {% endif %}</li>
         <li class="list-group-item">Código de barras: {% if promocao. %} <b>{{ promocao. }}</b> {% endif %}</li>
         <li class="list-group-item">Marca: {% if promocao.marca %} <b>{{ promocao.marca }}</b> {% endif %}</li>

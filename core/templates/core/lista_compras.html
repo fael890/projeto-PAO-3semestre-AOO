@@ -10,7 +10,6 @@ lista compras
 
 <h3>LISTA DE COMPRAS</h3>
 
-<!--<button class="add-new-item" href="/listagem-promocoes/"></button>-->
 <div class="add-new-item"><a href="/listagem-promocoes/">Adicionar item +</a></div>
 
 {% for i in itens %}
@@ -36,29 +35,5 @@ lista compras
 </div>
 {% endfor %}
 
-<!--<div class="container-fluid p-0">-->
-<!--    {% for i in itens %}-->
-<!--    <div class="row">-->
-<!--        <div class="col-2">-->
-<!--            <div class="image-wrapper">-->
-<!--                    {% if i.id_promocao.imagem %}-->
-<!--                                <img class="card-img img-fluid rounded-start" src="{{ i.id_promocao.imagem.url }}">-->
-<!--                            {% else %}-->
-<!--                                <img class="card-img img-fluid rounded-start" src="{% static 'promocao_generica.png' %}">-->
-<!--                            {% endif %}-->
-<!--             </div>-->
-<!--        </div>-->
-<!--        <div class="col">-->
-<!--            <h4><b>{% if i.id_promocao.descricao %} {{ i.id_promocao.descricao }} ({{ i.id_promocao.unidade }}) {% endif %}</b></h4>-->
-<!--            {% if i.id_promocao.preco_promocao %} <b class="preco-promocao">R${{ i.id_promocao.preco_promocao }}</b> <s>R${{ i.id_promocao.preco_normal }}</s>{% endif %} <br>-->
-<!--            {% if i.id_promocao.mercado.razao_social %}Supermercado: <b>{{ i.id_promocao.mercado.razao_social }}</b> {% endif %} <br>-->
-<!--            {% if i.id_promocao.distancia %}{{ i.id_promocao.distancia }}{% endif %}-->
-<!--        </div>-->
-<!--        <div class="col">-->
-<!--            <button><a href="{% url 'url_excluir_item' i.id %}">Remover</a></button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    {% endfor %}-->
-<!--</div>-->
 
 {% endblock %}

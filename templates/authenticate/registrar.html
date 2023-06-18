@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block main %}
+{%  load crispy_forms_tags %}
+<div class="container">
     <form method="post">
         {% csrf_token %}
-        {{ form_autenticao.as_p }}
+        {{ form_autenticao | crispy }}
         {% csrf_token %}
-        {{ form_usuario.as_p }}
+        {{ form_usuario | crispy }}
         {% csrf_token %}
-        {{ form_endereco.as_p }}
+        {{ form_endereco | crispy }}
         <button type="submit">Criar conta</button>
     </form>
-
+</div>
 {% endblock %}
