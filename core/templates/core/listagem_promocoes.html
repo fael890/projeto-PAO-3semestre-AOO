@@ -40,6 +40,9 @@ Home
         </div>
         <div class="cta-section">
             <a class="custom-btn" href="{% url 'url_adicionar_item' i.id %}"><span class="material-symbols-outlined">note_add</span></a>
+            {% if request.user.is_staff %}
+                <a class="custom-btn pl-3" href="{% url 'url_exclui_promocao' i.id %}"><span class="material-symbols-outlined">delete_forever</span></a>
+            {% endif %}
         </div>
     </div>
 </div>

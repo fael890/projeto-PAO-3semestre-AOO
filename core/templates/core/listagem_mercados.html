@@ -6,19 +6,25 @@ Home
 {% endblock %}
 
 {% block main %}
-<h3>Listagem mercados</h3> <br>
 
-{% for i in dados %}
-    Razão Social = {% if i.razao_social %} {{ i.razao_social }} {% endif %} <br>
-    cnpj = {% if i.cnpj %} {{ i.cnpj }} {% endif %} <br>
-    CEP = {% if i.endereco.cep %} {{ i.endereco.cep }} {% endif %} <br>
-    Estado = {% if i.endereco.estado %} {{ i.endereco.estado }} {% endif %} <br>
-    Cidade = {% if i.endereco.cidade %} {{ i.endereco.cidade }} {% endif %} <br>
-    Rua = {% if i.endereco.rua %} {{ i.endereco.rua }} {% endif %} <br>
-    Bairro = {% if i.endereco.bairro %} {{ i.endereco.bairro }} {% endif %} <br>
-    N° = {% if i.endereco.numero %} {{ i.endereco.numero }} {% endif %} <br>
-    ---------------------------------------------------------------------<br>
-{% endfor %}
-<button onclick="window.location.href='/'">home</button>
+
+<div class="container-fluid p-3">
+    <h3>Listagem mercados</h3> <br>
+
+    {% for i in dados %}
+        Razão Social: {% if i.razao_social %} <b>{{ i.razao_social }}</b> {% endif %} <br>
+        cnpj: {% if i.cnpj %} <b>{{ i.cnpj }}</b> {% endif %} <br>
+        CEP: {% if i.endereco.cep %} <b>{{ i.endereco.cep }}</b> {% endif %} <br>
+        Estado: {% if i.endereco.estado %} <b>{{ i.endereco.estado }}</b> {% endif %} <br>
+        Cidade: {% if i.endereco.cidade %} <b>{{ i.endereco.cidade }}</b> {% endif %} <br>
+        Rua: {% if i.endereco.rua %} <b>{{ i.endereco.rua }}</b> {% endif %} <br>
+        Bairro: {% if i.endereco.bairro %} <b>{{ i.endereco.bairro }}</b> {% endif %} <br>
+        N°: {% if i.endereco.numero %} <b>{{ i.endereco.numero }}</b> {% endif %} <br>
+        <a href="{% url 'url_exclui_mercado' i.id %}" class="btn btn-danger">Excluir</a><br>
+        ---------------------------------------------------------------------<br>
+    {% endfor %}
+    <br><button class="btn btn-primary" onclick="window.location.href='/'">Voltar para o início!</button>
+
+</div>
 
 {% endblock %}
