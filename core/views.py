@@ -94,7 +94,7 @@ def atualizar_promocao(request, id):
     form = FormPromocao(request.POST or None, request.FILES or None, instance=obj)
     if form.is_valid():
         form.save()
-        return redirect('url_atualiza_promocao')
+        return redirect('url_listagem_promocoes')
     contexto = {'form': form, 'txt_title': 'att_prom', 'txt_descricao': 'Atualização de Promoção', 'txt_button': 'Atualizar'}
     return render(request, 'core/cadastro.html', contexto)
 
@@ -121,13 +121,16 @@ def listar_mercados(request):
     return render(request, 'core/listagem_mercados.html', contexto)
 
 def atualizar_mercado(request, id):
-    obj = Mercado.objects.get(id=id)
-    form = FormMercado(request.POST or None, instance=obj)
-    if form.is_valid():
+    mercado = Mercado.objects.get(id=id)
+    endereco = Endereco.objects.get(id=mercado.endereco.id)
+    form = FormMercado(request.POST or None, request.FILES or None, instance=mercado)
+    form_endereco = FormEndereco(request.POST or None, instance=endereco)
+    if form.is_valid() and form_endereco.is_valid():
         form.save()
-        return redirect('url_atualiza_mercado')
-    contexto = {'form': form, 'txt_title': 'att_merc', 'txt_descricao': 'Atualização de Mercado', 'txt_button': 'Atualizar'}
-    return render(request, 'core/cadastro.html', contexto)
+        form_endereco.save()
+        return redirect('url_listagem_mercados')
+    contexto = {'form': form, 'form_endereco': form_endereco, 'txt_title': 'att_merc', 'txt_descricao': 'Atualização de Mercado', 'txt_button': 'Atualizar'}
+    return render(request, 'core/cadastro_completo.html', contexto)
 
 def excluir_mercado(request, id):
     obj = Mercado.objects.get(id=id)

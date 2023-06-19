@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block main %}
+{% load crispy_forms_tags %}
 
-<p>Cadastro completo </p>
+<div class="container">
+   <h1>Cadastro completo</h1>
    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form | crispy }}
       {% csrf_token %}
-      {{ form_endereco.as_p }} <br>
+      {{ form_endereco | crispy }} <br>
       <button type="submit">Salvar</button>
       <button onclick="window.location.href='/'">Cancelar</button>
    </form>
+</div>
 {% endblock %}

@@ -3,7 +3,7 @@
 }
 
 .card {
-    max-width: 35em;
+    max-width: 40em;
     flex-direction: row;
 }
 
@@ -31,6 +31,7 @@
 
 .cta-section .btn{
     padding: 0.3em 0.5em;
+    margin: 1em;
 }
 
 .product-img{

@@ -20,7 +20,10 @@ Home
         Rua: {% if i.endereco.rua %} <b>{{ i.endereco.rua }}</b> {% endif %} <br>
         Bairro: {% if i.endereco.bairro %} <b>{{ i.endereco.bairro }}</b> {% endif %} <br>
         N°: {% if i.endereco.numero %} <b>{{ i.endereco.numero }}</b> {% endif %} <br>
-        <a href="{% url 'url_exclui_mercado' i.id %}" class="btn btn-danger">Excluir</a><br>
+        <a href="{% url 'url_exclui_mercado' i.id %}" class="btn btn-danger">Excluir</a>
+        {% if request.user.is_staff %}
+            <a class="btn btn-warning pl-2" href="{% url 'url_atualiza_mercado' i.id %}">Atualizar</a><br>
+        {% endif %}
         ---------------------------------------------------------------------<br>
     {% endfor %}
     <br><button class="btn btn-primary" onclick="window.location.href='/'">Voltar para o início!</button>

@@ -43,6 +43,9 @@ Home
             {% if request.user.is_staff %}
                 <a class="custom-btn pl-3" href="{% url 'url_exclui_promocao' i.id %}"><span class="material-symbols-outlined">delete_forever</span></a>
             {% endif %}
+            {% if request.user.is_staff %}
+                <a class="custom-btn pl-3" href="{% url 'url_atualiza_promocao' i.id %}"><span class="material-symbols-outlined">tips_and_updates</span></a>
+            {% endif %}
         </div>
     </div>
 </div>
